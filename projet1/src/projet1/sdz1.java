@@ -12,9 +12,9 @@ public class sdz1 {
 
 	public static void main(String[] args) {
 		log.fatal("Entering in main");
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub !
 
-		//Déclaration des variables
+		//DÃ©claration des variables
 		Scanner sc = new Scanner(System.in);
 		int choix = 0;
 		double inCelsius;
@@ -37,24 +37,24 @@ public class sdz1 {
 
 			}
 
-			// Récupération de la Temp à convertir et conversion
+			// RÃ©cupÃ©ration de la Temp Ã  convertir et conversion
 			switch (choix)
 			{
 			case 1:
-				System.out.println("Temp °C à convertir : ");
+				System.out.println("Temp Â°C Ã  convertir : ");
 				inCelsius = sc.nextDouble();
 				faren = (1.8) * inCelsius + 32;
 				arrondFaren = arrondi (faren,1);
-				System.out.println(inCelsius + " °C correspond à : " + arrondFaren + " °F.");
+				System.out.println(inCelsius + " Â°C correspond Ã  : " + arrondFaren + " Â°F.");
 				// vide le scanner
 				sc.nextLine();
 				break;
 			case 2:
-				System.out.println("Temp °F à convertir : ");
+				System.out.println("Temp Â°F Ã  convertir : ");
 				inFaren = sc.nextDouble();
 				celsius = inFaren -32 * 5 /9;
 				arrondCelsius = arrondi (celsius,1);
-				System.out.println(inFaren + " °F correspond à  : " + arrondCelsius + " °C.");
+				System.out.println(inFaren + " Â°F correspond Ã   : " + arrondCelsius + " Â°C.");
 				// vide le scanner
 				sc.nextLine();
 				break;	
