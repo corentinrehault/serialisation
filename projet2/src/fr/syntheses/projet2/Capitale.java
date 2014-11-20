@@ -41,8 +41,9 @@ public class Capitale extends Ville {
 	 * @param pPays pays
 	 * @param pNbre hab
 	 * @param pMonument monument
+	 * @throws NombreHabitantException 
 	 */
-	public Capitale(final String pNom, final String pPays, final int pNbre, final String pMonument) {
+	public Capitale(final String pNom, final String pPays, final int pNbre, final String pMonument) throws NombreHabitantException, NomVilleException {
 		super(pNom, pPays, pNbre);
 		this.monument = pMonument;
 	}
@@ -51,8 +52,8 @@ public class Capitale extends Ville {
 	/* (non-Javadoc)
 	 * @see fr.syntheses.projet2.Ville#decrisToi()
 	 */
-	public String decrisToi() {
-		String str = super.decrisToi() + "\n \t ==>>" + this.monument + " en est un monument";
+	public String toString() {
+		String str = super.toString() + "\n \t ==>>" + this.monument + " en est un monument";
 		return str;
 	}
 

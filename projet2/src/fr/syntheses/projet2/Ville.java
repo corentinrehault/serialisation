@@ -1,6 +1,5 @@
 package fr.syntheses.projet2;
 
-import fr.syntheses.projet2.Constantes;
 /**
  * @author dao303
  * 
@@ -9,34 +8,6 @@ import fr.syntheses.projet2.Constantes;
  */
 public class Ville {
 	
-	/**
-	 * 
-	 */
-	private static final int MILLE = 1000;
-	/**
-	 * 
-	 */
-	private static final int CENTMILLE = 100000;
-	/**
-	 * 
-	 */
-	private static final int UNMILLION = 1000000;
-	/**
-	 * 
-	 */
-	private static final int DIXMILLION = 10000000;
-	/**
-	 * 
-	 */
-	private static final int DIXMILLE = 10000;
-	/**
-	 * 
-	 */
-	private static final int CINQMILLION = 5000000;
-	/**
-	 * 
-	 */
-	private static final int CINQCENTMILLE = 500000;
 	/**
 	 * Nom de ville.
 	 */
@@ -77,12 +48,24 @@ public class Ville {
 	 * @param pPays the pPays
 	 * @param pNbre the pNbre
 	 */
-	public Ville(final String pNom, final String pPays, final int pNbre) {
+	public Ville(final String pNom, final String pPays, final int pNbre)
+		throws NombreHabitantException, NomVilleException
+	{
+		if (pNbre<0) {
+			throw new NombreHabitantException(pNbre);
+		}
+		if (pNom.length() < 3) {
+			throw new NomVilleException("Le nom de la ville est < 3 caractères ! nom = " + pNom);
+		}
+		
+		else {
 		nomVille = pNom;
 		nomPays = pPays;
 		nbreHab = pNbre;
+		this.setCategorie();
 		//On incrémente nos variables de classe à chaque appel aux constructeurs.
 		nbreInstances++;
+		}
 	}
 	
 	
@@ -94,6 +77,13 @@ public class Ville {
 		return nomVille;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "\t" + this.nomVille + " est une ville de " + this.nomPays + ", elle comporte : " + this.nbreHab + " habitant(s) => elle est de catégorie : " + this.categorie;
+	}
 
 
 	/**
@@ -144,22 +134,15 @@ public class Ville {
 	 */
 	private void setCategorie() {
 		
-		int[] bornesSup = {0, MILLE, DIXMILLE, CENTMILLE,  CINQCENTMILLE, UNMILLION, CINQMILLION, DIXMILLION};
-		char[] categories = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+		int[] bornesSup = {0, Constantes.MILLE, Constantes.DIXMILLE, Constantes.CENTMILLE,  Constantes.CINQCENTMILLE, Constantes.UNMILLION, Constantes.CINQMILLION, Constantes.DIXMILLION};
+		char[] categories = {'?', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 		
 		int i = 0;
-		while (i < bornesSup.length & this.nbreHab >= bornesSup[i]) {
+		while (i < bornesSup.length && this.nbreHab > bornesSup[i]) {
 			i++;
 		}
 		this.categorie = categories[i];
 	}
-	
-	/**
-	 * @return descrition de la ville
-	 */
-	public String decrisToi() {
-		return "\t" + this.nomVille + " est une ville de " + this.nomPays + ", elle comporte : " + this.nbreHab + " habitant(s) => elle est donc de catégorie : " + this.categorie;
-		}
 	
 	/**
 	 * @param v1 the v1
